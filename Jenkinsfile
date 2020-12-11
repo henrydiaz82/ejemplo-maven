@@ -25,6 +25,7 @@ pipeline {
 	    
 	    stage('Nexus Upload'){
                     steps {
+			    dir('C:\\repositorios\\ejemplo-maven'){
                         nexusArtifactUploader(
                         nexusVersion: 'nexus3',
                         protocol: 'http',
@@ -41,7 +42,8 @@ pipeline {
                         ]
                     )
                         }
-                }
+		    }
+	    }
 		stage('Run Jar') {
 			steps {
 				sleep(time: 10, unit: "SECONDS")
