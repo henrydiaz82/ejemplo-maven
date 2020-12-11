@@ -22,15 +22,8 @@ pipeline {
 				}
 			}
 		}
-		stage('Run Jar') {
-			steps {
-				sleep(time: 10, unit: "SECONDS")
-				dir('C:\\repositorios\\ejemplo-maven'){
-				sh "./mvnw.cmd spring-boot:run"
-				}
-			}
-		}
-		stage('Nexus Upload'){
+	    
+	    stage('Nexus Upload'){
                     steps {
                         nexusArtifactUploader(
                         nexusVersion: 'nexus3',
@@ -49,5 +42,14 @@ pipeline {
                     )
                         }
                 }
+		stage('Run Jar') {
+			steps {
+				sleep(time: 10, unit: "SECONDS")
+				dir('C:\\repositorios\\ejemplo-maven'){
+				sh "./mvnw.cmd spring-boot:run"
+				}
+			}
+		}
+		
 	}
 }
