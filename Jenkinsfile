@@ -7,13 +7,12 @@ pipeline {
 				sh "./mvnw.cmd clean compile -e"
 				}
 			}		
-		stage('Test Code') {
-			steps {
-				
-				sh "./mvnw.cmd clean test -e"
-				
-			}
-		}
+		stage('Download') {
+                    steps {
+                            sh 'curl -X GET -u admin:admin http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
+                            sh 'pwd'
+                    }
+                }
 		stage('Jar Code') {
 			steps {
 				
